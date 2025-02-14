@@ -1,5 +1,6 @@
 package com.application.todoapp.controller;
 
+import com.application.todo.TodoAppApplication;
 import com.application.todo.controller.TodoController;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(TodoController.class)
+@Import(TodoAppApplication.class)
 public class TodoControllerTest {
 
     @Autowired
