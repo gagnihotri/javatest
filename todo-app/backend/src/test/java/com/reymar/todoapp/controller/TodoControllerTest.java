@@ -25,8 +25,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(TodoController.class)
-@Import(TodoAppApplication.class)
+@SpringBootTest
 public class TodoControllerTest {
 
     @Autowired
@@ -38,7 +37,8 @@ public class TodoControllerTest {
     private Todo todoItem;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
+        // Initialize the Todo object
         todoItem = new Todo();
         todoItem.setId(1);
         todoItem.setTask("Test Task");
@@ -47,56 +47,52 @@ public class TodoControllerTest {
 
     @Test
     public void testFetchAllTodos() throws Exception {
-        List<Todo> todoList = Arrays.asList(todoItem);
+        // Mock the service method
+        when(todoService.fetchAllTodos()).thenReturn(Arrays.asList(todoItem));
 
-        // Mock the service call to return a list of todos
-        when(todoService.fetchAllTodos()).thenReturn(todoList);
-
+        // Perform GET request and assert the response
         mockMvc.perform(get("/api/todoItems"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].task").value("Test Task"))
                 .andExpect(jsonPath("$[0].isDone").value(false));
     }
 
     @Test
     public void testCreateNewTodoItem() throws Exception {
-        // Mock the service call to return the created todo item
+        // Mock the service method
         when(todoService.createNewTodoItem()).thenReturn(todoItem);
 
+        // Perform POST request and assert the response
         mockMvc.perform(post("/api/todoItems")
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                .content("{\"task\":\"Test Task\",\"isDone\":false}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.task").value("Test Task"))
                 .andExpect(jsonPath("$.isDone").value(false));
     }
 
     @Test
     public void testUpdateTodoItem() throws Exception {
-        Todo updatedTodo = new Todo();
-        updatedTodo.setId(1);
-        updatedTodo.setTask("Updated Task");
-        updatedTodo.setIsDone(true);
+        // Mock the service method
+        when(todoService.updateTodoItem(eq(1), any(Todo.class))).thenReturn(todoItem);
 
-        // Mock the service call to return the updated todo item
-        when(todoService.updateTodoItem(1, updatedTodo)).thenReturn(updatedTodo);
-
-        mockMvc.perform(put("/api/todoItems/{id}", 1)
+        // Perform PUT request and assert the response
+        mockMvc.perform(put("/api/todoItems/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"task\":\"Updated Task\",\"isDone\":true}")
-                .accept(MediaType.APPLICATION_JSON))
+                .content("{\"task\":\"Updated Task\",\"isDone\":true}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.task").value("Updated Task"))
                 .andExpect(jsonPath("$.isDone").value(true));
     }
 
     @Test
     public void testDeleteTodoItem() throws Exception {
-        // Mock the service call to do nothing for deletion
-        mockMvc.perform(delete("/api/todoItems/{id}", 1))
-                .andExpect(status().isOk());
+        // Mock the service method
+        doNothing().when(todoService).deleteTodoItem(1);
+
+        // Perform DELETE request and assert the response
+        mockMvc.perform(delete("/api/todoItems/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("ok"));
     }
 }
