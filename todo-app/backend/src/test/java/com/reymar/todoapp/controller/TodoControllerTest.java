@@ -2,6 +2,7 @@ package com.application.todoapp.controller;
 
 import com.application.todo.controller.TodoController;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
