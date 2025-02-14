@@ -1,4 +1,4 @@
-import { GitHub, Twitter } from "@material-ui/icons";
+import { GitHub, Twitter } from "@mui/icons-material";
 import React from "react";
 import FooterCSS from "./Footer.module.css";
 
