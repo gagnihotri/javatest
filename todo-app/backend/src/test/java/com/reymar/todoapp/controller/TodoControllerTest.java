@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@@SpringBootTest(TodoController.class)
+@@SpringBootTest(classes = TodoController.class)
 public class TodoControllerTest {
 
     @Autowired
