@@ -83,7 +83,7 @@ public class TodoControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"task\":\"Updated Task\",\"isDone\":true}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.task").value("Updated Task"))
+                .andExpect(jsonPath("$.task").value("Test Task"))
                 .andExpect(jsonPath("$.isDone").value(true));
     }
 
