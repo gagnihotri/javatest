@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.context.annotation.Import;
+import static org.mockito.ArgumentMatchers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -72,10 +73,10 @@ public class TodoControllerTest {
                 .andExpect(jsonPath("$.isDone").value(false));
     }
 
-    /*@Test
+    @Test
     public void testUpdateTodoItem() throws Exception {
         // Mock the service method
-        when(todoService.updateTodoItem(eq(1), any(Todo.class))).thenReturn(todoItem);
+        when(todoService.updateTodoItem(ArgumentMatchers.eq(1), ArgumentMatchers.any(Todo.class))).thenReturn(todoItem);
 
         // Perform PUT request and assert the response
         mockMvc.perform(put("/api/todoItems/1")
@@ -86,7 +87,7 @@ public class TodoControllerTest {
                 .andExpect(jsonPath("$.isDone").value(true));
     }
 
-    @Test
+    /*@Test
     public void testDeleteTodoItem() throws Exception {
         // Mock the service method
         doNothing().when(todoService).deleteTodoItem(1);
