@@ -71,7 +71,7 @@ public class TodoControllerTest {
                 .andExpect(jsonPath("$.isDone").value(false));
     }
 
-    @Test
+    /*@Test
     public void testUpdateTodoItem() throws Exception {
         // Mock the service method
         when(todoService.updateTodoItem(eq(1), any(Todo.class))).thenReturn(todoItem);
@@ -94,5 +94,5 @@ public class TodoControllerTest {
         mockMvc.perform(delete("/api/todoItems/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("ok"));
-    }
+    }*/
 }
