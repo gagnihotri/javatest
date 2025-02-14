@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = TodoAppApplication.class)
+@AutoConfigureMockMvc
 public class TodoControllerTest {
 
     @Autowired
