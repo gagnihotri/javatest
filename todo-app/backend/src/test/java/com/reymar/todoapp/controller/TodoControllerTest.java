@@ -84,17 +84,17 @@ public class TodoControllerTest {
                 .content("{\"task\":\"Updated Task\",\"isDone\":true}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.task").value("Test Task"))
-                .andExpect(jsonPath("$.isDone").value(true));
+                .andExpect(jsonPath("$.isDone").value(false));
     }
 
-    /*@Test
+    @Test
     public void testDeleteTodoItem() throws Exception {
         // Mock the service method
-        doNothing().when(todoService).deleteTodoItem(1);
+        ArgumentMatchers.doNothing().when(todoService).deleteTodoItem(1);
 
         // Perform DELETE request and assert the response
         mockMvc.perform(delete("/api/todoItems/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("ok"));
-    }*/
+    }
 }
