@@ -1,8 +1,8 @@
-package com.reymar.todoapp.controller;
+package com.application.todoapp.controller;
 
 import com.application.todo.controller.TodoController;
-import com.reymar.todoapp.service.TodoService;
-import com.reymar.todoapp.model.Todo;
+import com.application.todoapp.service.TodoService;
+import com.application.todoapp.model.Todo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

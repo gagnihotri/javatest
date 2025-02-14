@@ -1,4 +1,4 @@
-package com.reymar.todoapp;
+package com.application.todoapp;
 
 import org.junit.jupiter.api.Test;
 import com.application.todo.TodoAppApplication;
